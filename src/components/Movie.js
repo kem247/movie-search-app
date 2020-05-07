@@ -5,8 +5,7 @@ const DEFAULT_IMAGE =
 
 const Movie = ({ movie }) => {
   const poster = movie.Poster === "N/A" ? DEFAULT_IMAGE : movie.Poster;
-  // console.log(movie.imdbID);
-  // const url = `movie/${movie.imdbID}`;
+
   return (
     <div className="movie">
       <h2>{movie.Title}</h2>

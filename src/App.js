@@ -74,10 +74,6 @@ const App = () => {
 
   const { movies, errorMessage, loading } = state;
 
-  // const wrapperFunction = (id) => {
-  //   toggle((toggled) => !toggled);
-  //   getMovie(id);
-  // };
   const retrievedMovies =
     loading && !errorMessage ? (
       <img className="spinner" src={spinner} alt="Loading spinner" />
@@ -85,21 +81,16 @@ const App = () => {
       <div className="errorMessage">{errorMessage}</div>
     ) : (
       movies.map((movie, index) => (
-        <div key={`${index}-${movie.Title}`}>
-          <Movie key={`${index}-${movie.Title}`} movie={movie} />
+        <div className="movie-title" key={`${index}-${movie.Title}`}>
+          <Movie
+            id="movie-index"
+            key={`${index}-${movie.Title}`}
+            movie={movie}
+          />
           <>
-            <button
-              // onClick={() => getMovie(movie.imdbID)}
-              onClick={() => getMovie(movie.imdbID)}
-            >
+            <button id="button-more" onClick={() => getMovie(movie.imdbID)}>
               More
             </button>
-            {/* <p>{console.log("getMovie", getMovie())}</p> */}
-            {/* <div>
-              {movie && getMovie(movie.imdbID).map((m) => <p>{m.Plot}</p>)}
-            </div> */}
-
-            {/* <SingleMovie singleMovie={getMovie}>{getMovie} </SingleMovie> */}
           </>
         </div>
       ))
@@ -108,11 +99,11 @@ const App = () => {
   return (
     <div className="App">
       <div className="m-container">
-        <Header text="MOVIE SEARCH" />
+        <Header text="Movie Search" onClick={refreshPage} />
 
         <Search search={search} />
 
-        <p className="App-intro">Sharing a few of our favourite movies</p>
+        <p className="App-intro">Search through some good films</p>
 
         <div className="movies">{retrievedMovies}</div>
       </div>
